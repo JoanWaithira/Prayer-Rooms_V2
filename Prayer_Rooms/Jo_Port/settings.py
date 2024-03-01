@@ -50,6 +50,7 @@ AUTH_USER_MODEL = 'base.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,14 +94,22 @@ WSGI_APPLICATION = 'Jo_Port.wsgi.application'
 #     }
     
 # }
-if not DEBUG:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }}
+# if not DEBUG:
+#     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'db.sqlite3',
+#         }}
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -139,6 +148,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/images/'
 
