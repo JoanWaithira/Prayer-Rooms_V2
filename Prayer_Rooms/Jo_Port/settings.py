@@ -369,7 +369,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Jo_Port.wsgi.application'
 
 # Use the provided DATABASE_URL environment variable for production
-DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms',
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
