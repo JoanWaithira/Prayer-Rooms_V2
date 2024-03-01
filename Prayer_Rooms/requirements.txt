@@ -1,6 +1,7 @@
 asgiref==3.7.2
 beautifulsoup4==4.12.3
 Brotli==1.1.0
+corsheaders == 4.3.1
 dj-database-url==2.1.0
 Django==5.0.1
 django-crispy-forms==2.0
