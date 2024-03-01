@@ -184,6 +184,130 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+# import os
+# from pathlib import Path
+# import dj_database_url
+
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-m3#^%kgtqz42tf%5014r_-7pwk$ob$@-z&8_tz(@=loh_3=1#8')
+
+# DEBUG = False
+
+# ALLOWED_HOSTS = ['*']
+
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     'base.apps.BaseConfig',
+#     'rest_framework',
+#     'corsheaders',
+# ]
+
+# AUTH_USER_MODEL = 'base.User'
+
+# MIDDLEWARE = [
+#     'django.middleware.security.SecurityMiddleware',
+#     'whitenoise.middleware.WhiteNoiseMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#     'corsheaders.middleware.CorsMiddleware',
+# ]
+
+# ROOT_URLCONF = 'Jo_Port.urls'
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             BASE_DIR / 'templates',
+#         ],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
+
+# WSGI_APPLICATION = 'Jo_Port.wsgi.application'
+
+# # DATABASES = {
+# #     'default': dj_database_url.config(
+# #         default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms?sslmode=require',
+# #         conn_max_age=600
+# #     )
+# # }
+
+# if not DEBUG:
+#     DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'db.sqlite3',
+#         }}
+
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
+
+# LANGUAGE_CODE = 'en-us'
+
+# TIME_ZONE = 'UTC'
+
+# USE_I18N = True
+
+# USE_L10N = True
+
+# USE_TZ = True
+
+# STATIC_URL = '/static/'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
+
+# MEDIA_URL = '/media/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS_ALLOWED_ORIGINS = [
+#     'https://example.com',  # Add your allowed origins here
+#     'http://localhost:3000',
+#     # Add more origins as needed
+# ]
+
+
+
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -244,22 +368,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Jo_Port.wsgi.application'
 
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms?sslmode=require',
-#         conn_max_age=600
-#     )
-# }
+# Use the provided DATABASE_URL environment variable for production
+DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
 
-if not DEBUG:
-    DATABASES = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
-        }}
-
+# Password validation
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -287,20 +400,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Use WhiteNoise to serve static files in production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Additional locations of static files
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Media files settings
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Set the default auto field for Django models
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CORS settings to allow specific origins
 CORS_ALLOWED_ORIGINS = [
-    'https://example.com',  # Add your allowed origins here
+    'https://example.com',
     'http://localhost:3000',
     # Add more origins as needed
 ]
