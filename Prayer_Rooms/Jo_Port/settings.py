@@ -192,7 +192,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-m3#^%kgtqz42tf%5014r_-7pwk$ob$@-z&8_tz(@=loh_3=1#8')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -246,7 +246,7 @@ WSGI_APPLICATION = 'Jo_Port.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms',
+        default='postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a/prayer_rooms?sslmode=require',
         conn_max_age=600
     )
 }
