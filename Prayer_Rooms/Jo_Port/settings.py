@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m3#^%kgtqz42tf%5014r_-7pwk$ob$@-z&8_tz(@=loh_3=1#8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['prayer-rooms-v2-22.onrender.com']
 
 
 # Application definition
@@ -91,11 +91,23 @@ WSGI_APPLICATION = 'Jo_Port.wsgi.application'
 #     }
 # }
 
+import os
 import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.parse('postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a.oregon-postgres.render.com/prayer_rooms')
-}
+if not DEBUG:
+    DATABASES = {'default': dj_database_url.parse(os.environ.get('postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a.oregon-postgres.render.com/prayer_rooms'))}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }}
+
+
+
+# DATABASES = {
+#     'default': dj_database_url.parse('postgres://prayer_rooms_user:wmUcW2kS8qx11nTFz3UEeIzWPh4Gtqh7@dpg-cngo5mnsc6pc73avevn0-a.oregon-postgres.render.com/prayer_rooms')
+# }
 
 
 
